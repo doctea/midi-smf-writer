@@ -1,0 +1,9 @@
+{ 
+	"name": "midi-smf-writer",
+	"version": "0.0.1",
+	"repository":
+	{
+		"type": "git",
+		"url": "https://github.com/newdigate/midi-smf-writer.git"
+	}
+}

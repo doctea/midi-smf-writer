@@ -44,15 +44,15 @@ void SmfWriter::write_buf_byte(byte b) {
 void SmfWriter::setFilename(const char* filename) {
   flush();
 
-  sprintf(_filename, "%s.mid\0", filename);
+  sprintf(_filename, "%s\0", filename);
   
-  int count = 1;
+  /*int count = 1;
   while (SD.exists(_filename)) {
-    //Serial.printf("'%s' already exists...\n", _filename);   
+    Serial.printf("'%s' already exists...\n", _filename);   
     sprintf(_filename, "%s%i.mid", filename, count);
     count++;
-  }
-  //Serial.printf("using filename '%s'\n", _filename);
+  }*/
+  Serial.printf("using filename '%s'\n", _filename);
 }
 
 void SmfWriter::writeHeader() {
@@ -230,7 +230,7 @@ void SmfWriter::addCuePointText(unsigned int deltaticks, const char* text) {    
 
 void SmfWriter::flush() {
     if (_bufferPos == 0) return;
-    File data = SD.open(_filename, O_WRITE | O_APPEND);
+    File data = SD.open(_filename, O_WRITE); // | O_APPEND);
     if (!data) {
         char *notAbleToOpen = const_cast<char *>("Not able to open ");
         Serial.print(notAbleToOpen);
